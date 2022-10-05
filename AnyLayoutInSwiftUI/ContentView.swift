@@ -8,14 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var toggleLayout = false
+    
     var body: some View {
-        VStack {
+        
+        let layout = toggleLayout ? AnyLayout(HStackLayout()) : AnyLayout(VStackLayout())
+        
+        layout {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text("Hello")
+            Text("world")
+            Image(systemName: "globe")
+                .imageScale(.large)
+                .foregroundColor(.accentColor)
         }
         .padding()
+        .onTapGesture {
+            withAnimation {
+                toggleLayout.toggle()
+            }
+        }
     }
 }
 
